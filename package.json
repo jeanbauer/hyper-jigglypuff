@@ -1,0 +1,25 @@
+{
+  "name": "hyper-jigglypuff",
+  "version": "1.0.24",
+  "description": "a hyper.js theme プリン",
+  "main": "index.js",
+  "repository": "https://github.com/jeanbauer/jigglypuff",
+  "author": {
+    "name": "Jean Bauer",
+    "email": "anotherregulardev@gmail.com",
+    "url": "https://jeanbauer.dev"
+  },
+  "keywords": [
+    "hyper",
+    "rose-hyper",
+    "pink-hyper",
+    "jigglypuff",
+    "jigglypuff-terminal",
+    "hyper-jigglypuff"
+  ],
+  "license": "MIT",
+  "private": false,
+  "dependencies": {
+    "color": "^3.1.2"
+  }
+}
