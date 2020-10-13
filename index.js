@@ -13,6 +13,9 @@ function getUserOptions(configObj) {
       get jigglypuffHide() {
         return (configObj.jigglypuffHide || "false") === "true";
       },
+      get jigglypuffTerminalStyle() {
+        return configObj.jigglypuffTerminalStyle || "default";
+      },
     }
   );
 }
@@ -20,6 +23,10 @@ function getUserOptions(configObj) {
 exports.decorateConfig = (config) => {
   const options = getUserOptions(config);
   const gifPath = path.join(filepath, `${options.jigglypuffVersion}.gif`);
+  const backgroundImage =
+    options.jigglypuffTerminalStyle === "minimal"
+      ? "linear-gradient(to top, #feada6 0%, #ff9a9e 100%)"
+      : "linear-gradient(45deg, #ff9a9e 0%, #ffb8b8 99%, #ffcccc 100%)";
 
   const primary = "#fac7d6";
   const secondary = "#ff9a9e";
@@ -33,32 +40,61 @@ exports.decorateConfig = (config) => {
   const tabContent = options.jigglypuffHide ? "" : gifPath;
 
   const syntax = {
-    backgroundColor: transparent,
-    borderColor: background,
-    cursorColor: "#ec6b70",
-    foregroundColor: "#FFFFFF",
-    selectionColor: selection,
-    colors: {
-      black: "#ff9a9e",
-      red: "#C51E14",
-      green: "#ec6b70",
-      yellow: "#ec6b70",
-      blue: "#fac7d6",
-      magenta: "#C839C5",
-      cyan: "#20C5C6",
-      white: "#FFFFFF",
-      lightBlack: "#686868",
-      lightRed: "#FD6F6B",
-      lightGreen: "#67F86F",
-      lightYellow: "#FFFA72",
-      lightBlue: "#6A76FB",
-      lightMagenta: "#FD7CFC",
-      lightCyan: "#18565d",
-      lightWhite: "#FFFFFF",
+    default: {
+      backgroundColor: transparent,
+      borderColor: background,
+      cursorColor: "#ec6b70",
+      foregroundColor: "#FFFFFF",
+      selectionColor: selection,
+      colors: {
+        black: "#7d5fff",
+        red: "#C51E14",
+        green: "#00b894",
+        yellow: "#ffb8b8",
+        blue: "#fac7d6",
+        magenta: "#C839C5",
+        cyan: "#20C5C6",
+        white: "#FFFFFF",
+        lightBlack: "#686868",
+        lightRed: "#FD6F6B",
+        lightGreen: "#67F86F",
+        lightYellow: "#FFFA72",
+        lightBlue: "#6A76FB",
+        lightMagenta: "#FD7CFC",
+        lightCyan: "#18565d",
+        lightWhite: "#FFFFFF",
+      },
+    },
+    minimal: {
+      backgroundColor: transparent,
+      borderColor: background,
+      cursorColor: "#ec6b70",
+      foregroundColor: "#FFFFFF",
+      selectionColor: selection,
+      colors: {
+        black: "#ef5777",
+        red: "#f53b57",
+        green: "#20bcbd",
+        yellow: "#ffda79",
+        blue: "#fac7d6",
+        magenta: "#C839C5",
+        cyan: "#20C5C6",
+        white: "#FFFFFF",
+        lightBlack: "#686868",
+        lightRed: "#FD6F6B",
+        lightGreen: "#67F86F",
+        lightYellow: "#FFFA72",
+        lightBlue: "#6A76FB",
+        lightMagenta: "#FD7CFC",
+        lightCyan: "#18565d",
+        lightWhite: "#FFFFFF",
+      },
     },
   };
 
-  return Object.assign({}, config, syntax, {
+  const selectedSyntx = syntax[options.jigglypuffTerminalStyle];
+
+  return Object.assign({}, config, selectedSyntx, {
     termCSS: config.termCSS || "",
     css: `
       ${config.css || ""}
@@ -74,7 +110,7 @@ exports.decorateConfig = (config) => {
       .hyper_main {
         color: #FFF;
         background-color: ${background};
-        background-image: linear-gradient(45deg, #ff9a9e 0%, #fad0c4 99%, #fad0c4 100%);
+        background-image: ${backgroundImage};
         border-width: 3px;border-image: linear-gradient(to top, #fad0c4, #fad0c4 61%, #ff9a9e);
         border-image-slice: 1;
       }
