@@ -1,8 +1,8 @@
-# jigglypuff
+# hyper-jigglypuff
 Jigglypuff is a hyper.js theme プリン
 
 <h1 align="center">
-  <img src="images/screenshot.png"><br/>
+  <img src="github-assets/default.png"><br/>
 </h1>
 
 ## Install
@@ -33,6 +33,7 @@ config: {
     // Jigglypuff theme
     jigglypuffHide: 'false', // default
     jigglypuffVersion: 'iii', // default is v
+    jigglypuffTerminalStyle: 'minimal', // default is ... default
     //...
 }
 ```
@@ -59,6 +60,17 @@ The variations are:
 * `jigglypuffVersion: iv` ![](images/iv.gif)
 * `jigglypuffVersion: v` ![](images/v.gif)
 * `jigglypuffVersion: v-big` ![](images/v-big.gif)
+
+### `jigglypuffTerminalStyle`
+
+Use this option to change the theme colors. 
+
+The variations are:
+
+* `jigglypuffTerminalStyle: default` ![](github-assets/default.png)
+* `jigglypuffTerminalStyle: minimal` ![](github-assets/minimal.png)
+
+> The contrast on both might be too low.
 
 ---
 
